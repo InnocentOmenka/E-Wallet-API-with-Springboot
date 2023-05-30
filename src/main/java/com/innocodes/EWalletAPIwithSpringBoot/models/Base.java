@@ -5,12 +5,12 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @MappedSuperclass
 @Getter
@@ -18,14 +18,24 @@ import java.time.LocalDateTime;
 public abstract class Base {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String id;
+    @CreatedDate
+    private Date createdDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "UTC")
-    @CreationTimestamp
-    private LocalDateTime createdAt;
+    @LastModifiedDate
+    private Date updatedDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss.SSS", timezone = "UTC")
-    @UpdateTimestamp
-    private LocalDateTime updatedAt;
+    Base(){
+        this.createdDate= new Date();
+        this.updatedDate = new Date();
+    }
+
+    @PrePersist
+    public void setCreatedAt() {
+        createdDate = new Date();
+    }
+    @PreUpdate
+    public void setUpdatedAt() {
+        updatedDate = new Date();
+    }
 }
