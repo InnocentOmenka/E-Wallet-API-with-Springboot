@@ -19,17 +19,17 @@ public class Account extends Base{
     private static final long serialVersionUID = 2L;
 
 
-    private String accountUUID;
+    private String accountUuid;
 
 
-    private String userUUID;
+    private String userUuid;
 
     @Column(name = "account_name", nullable = false)
-    private String account_name;
+    private String accountName;
 
     @Column(name = "account_number", nullable = false)
-    private String account_number;
+    private String accountNumber;
 
     @Column(name = "bank_name", nullable = false)
-    private String bank_name;
+    private String bankName;
 }

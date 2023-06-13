@@ -23,7 +23,7 @@ public class WalletServiceImpl implements WalletService {
 
         Wallet wallet = walletRepository.findByEmail(email)
                 .orElse(Wallet.builder()
-                        .walletUUID(appUtil.generateSerialNumber("0"))
+                        .walletUuid(appUtil.generateSerialNumber("0"))
                         .balance(BigDecimal.ZERO)
                         .email(email)
                         .build());

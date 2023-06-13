@@ -18,7 +18,8 @@ import java.util.Date;
 public abstract class Base {
 
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @CreatedDate
     private Date createdDate;
 

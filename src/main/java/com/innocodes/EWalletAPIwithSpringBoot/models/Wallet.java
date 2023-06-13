@@ -22,7 +22,7 @@ import java.math.BigDecimal;
 @Entity
 public class Wallet extends Base implements Serializable {
     private static final long serialVersionUID = 2L;
-    private String walletUUID;
+    private String walletUuid;
 
     private String email;
 
