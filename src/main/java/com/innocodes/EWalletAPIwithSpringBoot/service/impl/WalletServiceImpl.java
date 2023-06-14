@@ -3,7 +3,7 @@ package com.innocodes.EWalletAPIwithSpringBoot.service.impl;
 import com.innocodes.EWalletAPIwithSpringBoot.dtos.responseDto.WalletResponseDto;
 import com.innocodes.EWalletAPIwithSpringBoot.models.Wallet;
 import com.innocodes.EWalletAPIwithSpringBoot.repository.WalletRepository;
-import com.innocodes.EWalletAPIwithSpringBoot.service.WalletService;
+import com.innocodes.EWalletAPIwithSpringBoot.service.WalletServices;
 import com.innocodes.EWalletAPIwithSpringBoot.util.AppUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
-public class WalletServiceImpl implements WalletService {
+public class WalletServiceImpl implements WalletServices {
     @Autowired
     private WalletRepository walletRepository;
 
