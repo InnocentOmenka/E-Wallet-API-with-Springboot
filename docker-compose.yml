@@ -1,0 +1,44 @@
+version: "3.8"
+services:
+  ### MYSQL Database ###
+  mysql:
+    container_name: mysql
+    image: mysql
+    ports:
+      - "3307:3307"
+    environment:
+      MYSQL_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: Decagon@2022
+      MYSQL_DATABASE: e_walletdb
+      MYSQL_TCP_PORT: 3307
+    restart: always
+  #    volumes:
+  #      - mysql_db_data:/var/lib/mysql
+
+  ### MySQL Adminer ###
+  adminer:
+    container_name: adminer_container
+    image: adminer
+    depends_on:
+      - mysql
+    environment:
+      ADMINER_DEFAULT_SERVER: mysql
+      ADMINER_DESIGN: galkaev
+    ports:
+      - "8080:8080"
+    restart: always
+
+  ### API Spring Boot ###
+
+  server:
+    container_name: appserver
+    image: omenka/e-wallet-image
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3307/e_walletdb?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+      SPRING_DATASOURCE_DRIVER_CLASS_NAME: com.mysql.cj.jdbc.Driver
+    ports:
+      - "8081:8081"
+    restart: always
